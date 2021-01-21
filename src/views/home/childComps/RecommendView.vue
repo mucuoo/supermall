@@ -30,7 +30,6 @@
     width: 100%;
     text-align: center;
     font-size: 12px;
-    background-color: var(--color-background);
 
     padding: 12px 0 20px;
     border-bottom: 10px solid #eee;
