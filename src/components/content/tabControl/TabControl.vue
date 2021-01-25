@@ -28,7 +28,8 @@
     methods: {
       itemClick(index) {
         this.currentIdx = index
-        this.$emit('tabClick', index)
+        this.$emit('tabClickInner', index)
+        this.$emit('tabClickOuter', index)
       }
     }
   }

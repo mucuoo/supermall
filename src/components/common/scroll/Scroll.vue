@@ -34,28 +34,37 @@
     mounted() {
       this.scroll = new BScroll(this.$refs.wrapper, {
         click: true,
+        disableMouse: true,
+        disableTouch: false,
         observeDOM: true,
         probeType: this.probeType,
         pullUpLoad: this.pullUp
       })
 
-      this.scroll.on('scroll', (position) => {
-        this.$emit('scroll', position)
-      })
+      if(this.probeType === 2 || this.probeType === 3){
+        this.scroll.on('scroll', (position) => {
+          this.$emit('scroll', position)
+        })
+      }
 
-      this.scroll.on('pullingUp', () => {
-        this.$emit('pullUp')
-      })
+      if (this.pullUp){
+        this.scroll.on('pullingUp', () => {
+          this.$emit('pullUp')
+        })
+      }
     },
     methods: {
       scrollTo(x, y, time=500) {
-        this.scroll.scrollTo(x, y, time)
+        this.scroll && this.scroll.scrollTo(x, y, time)
       },
       finishPullUp() {
-        this.scroll.finishPullUp()
+        this.scroll && this.scroll.finishPullUp()
       },
       refresh() {
-        this.scroll.refresh()
+        this.scroll && this.scroll.refresh()
+      },
+      getCurrentY() {
+        return this.scroll ? this.scroll.y : 0
       }
     }
   }
